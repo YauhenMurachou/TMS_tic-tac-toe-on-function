@@ -1,6 +1,6 @@
 import React from "react";
 import Square from "../Square/Square";
-
+import PropTypes from 'prop-types';
 import './Board.css';
 
 
@@ -46,5 +46,12 @@ function Board({ winCombination, squares, handleClickSquare, currentStepNumber, 
 	);
 }
 
+Board.propTypes = {
+	history: PropTypes.array,
+	currentStepNumber: PropTypes.number,
+	winCombination: PropTypes.array,
+	squares: PropTypes.array,
+	handleClickSquare: PropTypes.func
+}
 
 export default Board;

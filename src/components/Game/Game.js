@@ -5,10 +5,14 @@ import './Game.css'
 function Game() {
 
 	const [history, setHistory] = useState([{ squares: Array(9).fill("") }]);
-	const [nextStep, setNextStep] = useState("X");
+	const [nextStep, setNextStep] = useState('X');
 	const [currentStepNumber, setCurrentStepNumber] = useState(0);
 	const [isFinish, setIsFinish] = useState(false);
 	const [winCombination, setWinCombination] = useState([]);
+
+
+
+
 
 	const calculateWinner = (squares) => {
 		const lines = [
@@ -72,7 +76,7 @@ function Game() {
 
 	const jumpTo = (step) => {
 		setCurrentStepNumber(step);
-		
+
 	}
 
 
