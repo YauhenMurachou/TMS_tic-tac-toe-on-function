@@ -72,7 +72,7 @@ function Game() {
 
 	const jumpTo = (step) => {
 		setCurrentStepNumber(step);
-		setWinCombination([]);
+		
 	}
 
 
@@ -117,6 +117,8 @@ function Game() {
 						winCombination={winCombination}
 						squares={currentSquares}
 						handleClickSquare={clickSquare}
+						history={history}
+						currentStepNumber={currentStepNumber}
 					/>
 				</div>
 				<div className="game-info">

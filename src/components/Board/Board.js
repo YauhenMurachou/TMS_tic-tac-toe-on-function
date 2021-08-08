@@ -4,7 +4,7 @@ import Square from "../Square/Square";
 import './Board.css';
 
 
-function Board({ winCombination, squares, handleClickSquare }) {
+function Board({ winCombination, squares, handleClickSquare, currentStepNumber, history }) {
 
 	const renderSquare = (i) => {
 		let finishSquare;
@@ -15,7 +15,8 @@ function Board({ winCombination, squares, handleClickSquare }) {
 		});
 		return (
 			<Square
-				finishSquare={finishSquare}
+				winSquare={finishSquare &&
+					currentStepNumber === history.length - 1}
 				position={i}
 				value={squares[i]}
 				onClick={handleClickSquare}

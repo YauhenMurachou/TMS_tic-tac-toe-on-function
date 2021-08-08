@@ -2,7 +2,7 @@ import React from "react";
 
 import './Square.css'
 
-function Square({ finishSquare, position, value, onClick }) {
+function Square({ winSquare, position, value, onClick }) {
 
 	const handleClick = () => {
 		onClick(position)
@@ -11,7 +11,7 @@ function Square({ finishSquare, position, value, onClick }) {
 
 	return (
 		<button
-			className={finishSquare ? "square-active" : "square"}
+			className={winSquare ? "square-active" : "square"}
 			onClick={handleClick}
 		>
 			{value}
