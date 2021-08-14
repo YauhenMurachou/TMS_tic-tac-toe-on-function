@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Board from '../Board/Board';
 import './Game.css'
 
+export const Context = React.createContext();
+
 function Game() {
 
 	const [history, setHistory] = useState([{ squares: Array(9).fill("") }]);
@@ -9,10 +11,6 @@ function Game() {
 	const [currentStepNumber, setCurrentStepNumber] = useState(0);
 	const [isFinish, setIsFinish] = useState(false);
 	const [winCombination, setWinCombination] = useState([]);
-
-
-
-
 
 	const calculateWinner = (squares) => {
 		const lines = [
@@ -60,7 +58,6 @@ function Game() {
 		setCurrentStepNumber(0);
 		setIsFinish(false);
 		setWinCombination([]);
-
 	}
 
 	const showFinishButton = () => {
@@ -76,7 +73,6 @@ function Game() {
 
 	const jumpTo = (step) => {
 		setCurrentStepNumber(step);
-
 	}
 
 
@@ -102,7 +98,6 @@ function Game() {
 	}
 
 
-
 	let status;
 	if (isFinish) {
 		status = "Game over. Winner is " + nextStep;
@@ -111,26 +106,28 @@ function Game() {
 	}
 
 	const currentSquares = history[currentStepNumber].squares;
+	const contextValue = { clickSquare };
 
 	return (
-		<div>
-			<div className="game">
-				<div className="game-board">
-					<div className="status">{status}</div>
-					<Board
-						winCombination={winCombination}
-						squares={currentSquares}
-						handleClickSquare={clickSquare}
-						history={history}
-						currentStepNumber={currentStepNumber}
-					/>
+		<Context.Provider value={contextValue}>
+			<div>
+				<div className="game">
+					<div className="game-board">
+						<div className="status">{status}</div>
+						<Board
+							winCombination={winCombination}
+							squares={currentSquares}
+							history={history}
+							currentStepNumber={currentStepNumber}
+						/>
+					</div>
+					<div className="game-info">
+						<ul>{showButtonsHistory()}</ul>
+					</div>
 				</div>
-				<div className="game-info">
-					<ul>{showButtonsHistory()}</ul>
-				</div>
+				<footer>{showFinishButton()}</footer>
 			</div>
-			<footer>{showFinishButton()}</footer>
-		</div>
+		</Context.Provider>
 	);
 }
 

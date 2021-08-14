@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './Board.css';
 
 
-function Board({ winCombination, squares, handleClickSquare, currentStepNumber, history }) {
+function Board({ winCombination, squares, currentStepNumber, history }) {
 
 	const renderSquare = (i) => {
 		let finishSquare;
@@ -19,7 +19,6 @@ function Board({ winCombination, squares, handleClickSquare, currentStepNumber, 
 					currentStepNumber === history.length - 1}
 				position={i}
 				value={squares[i]}
-				onClick={handleClickSquare}
 			/>
 		);
 	}
@@ -50,8 +49,7 @@ Board.propTypes = {
 	history: PropTypes.array,
 	currentStepNumber: PropTypes.number,
 	winCombination: PropTypes.array,
-	squares: PropTypes.array,
-	handleClickSquare: PropTypes.func
+	squares: PropTypes.array	
 }
 
 export default Board;

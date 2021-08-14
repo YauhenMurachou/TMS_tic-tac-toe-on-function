@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from 'prop-types';
-import './Square.css'
+import { Context } from "../Game/Game";
+import './Square.css';
 
-function Square({ winSquare, position, value, onClick }) {
+function Square({ position, value, winSquare }) {
+
+	const { clickSquare } = useContext(Context);
 
 	const handleClick = () => {
-		onClick(position)
+		clickSquare(position)
 	};
-
 
 	return (
 		<button
@@ -22,8 +24,7 @@ function Square({ winSquare, position, value, onClick }) {
 Square.propTypes = {
 	position: PropTypes.number,
 	value: PropTypes.string,
-	winSquare: PropTypes.bool,
-	onClick: PropTypes.func
+	winSquare: PropTypes.bool
 }
 
 export default Square;
