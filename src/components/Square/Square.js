@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { Context } from "../Game/Game";
 import './Square.css';
 
-function Square({ position, value, winSquare }) {
+function Square({ position, winSquare }) {
 
-	const { clickSquare } = useContext(Context);
+	const { clickSquare, currentSquares } = useContext(Context);
 
 	const handleClick = () => {
 		clickSquare(position)
@@ -16,14 +16,13 @@ function Square({ position, value, winSquare }) {
 			className={winSquare ? "square-active" : "square"}
 			onClick={handleClick}
 		>
-			{value}
+			{currentSquares[position]}
 		</button>
 	);
 }
 
 Square.propTypes = {
-	position: PropTypes.number,
-	value: PropTypes.string,
+	position: PropTypes.number,	
 	winSquare: PropTypes.bool
 }
 

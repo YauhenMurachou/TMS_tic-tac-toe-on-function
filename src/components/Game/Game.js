@@ -106,7 +106,7 @@ function Game() {
 	}
 
 	const currentSquares = history[currentStepNumber].squares;
-	const contextValue = { clickSquare };
+	const contextValue = { clickSquare, currentSquares };
 
 	return (
 		<Context.Provider value={contextValue}>
@@ -115,8 +115,7 @@ function Game() {
 					<div className="game-board">
 						<div className="status">{status}</div>
 						<Board
-							winCombination={winCombination}
-							squares={currentSquares}
+							winCombination={winCombination}							
 							history={history}
 							currentStepNumber={currentStepNumber}
 						/>

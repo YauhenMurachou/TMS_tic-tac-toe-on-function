@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './Board.css';
 
 
-function Board({ winCombination, squares, currentStepNumber, history }) {
+function Board({ winCombination, history, currentStepNumber }) {
 
 	const renderSquare = (i) => {
 		let finishSquare;
@@ -18,11 +18,9 @@ function Board({ winCombination, squares, currentStepNumber, history }) {
 				winSquare={finishSquare &&
 					currentStepNumber === history.length - 1}
 				position={i}
-				value={squares[i]}
 			/>
 		);
 	}
-
 
 	return (
 		<div>
@@ -48,8 +46,7 @@ function Board({ winCombination, squares, currentStepNumber, history }) {
 Board.propTypes = {
 	history: PropTypes.array,
 	currentStepNumber: PropTypes.number,
-	winCombination: PropTypes.array,
-	squares: PropTypes.array	
+	winCombination: PropTypes.array
 }
 
 export default Board;
