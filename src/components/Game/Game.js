@@ -8,6 +8,7 @@ function Game() {
 
 	const [history, setHistory] = useState([{ squares: Array(9).fill("") }]);
 	const [nextStep, setNextStep] = useState('X');
+	let [currentStep, setCurrentStep] = useState('');
 	const [currentStepNumber, setCurrentStepNumber] = useState(0);
 	const [isFinish, setIsFinish] = useState(false);
 	const [winCombination, setWinCombination] = useState([]);
@@ -45,11 +46,12 @@ function Game() {
 			isFinishLocal = calculateWinner(currentSquaresCopy);
 			setHistory(history.concat({ squares: currentSquaresCopy }));
 			setNextStep(isFinish ? nextStep : nextStep === "X" ? "0" : "X");
+			setCurrentStep((nextStep === "X") ? currentStep = 'X' : currentStep = '0')
 			setCurrentStepNumber(history.length);
 			setIsFinish(isFinishLocal);
 		}
 	}
-
+	console.log(currentStep)
 	const finishButton = () => {
 		console.log("finishButton");
 
@@ -100,8 +102,11 @@ function Game() {
 
 	let status;
 	if (isFinish) {
-		status = "Game over. Winner is " + nextStep;
-	} else {
+		status = "Game over. Winner is " + currentStep;
+	} else if (history.length === 10) {
+		status = "No winner today"
+	}
+	else {
 		status = "Next player: " + nextStep;
 	}
 
@@ -115,7 +120,7 @@ function Game() {
 					<div className="game-board">
 						<div className="status">{status}</div>
 						<Board
-							winCombination={winCombination}							
+							winCombination={winCombination}
 							history={history}
 							currentStepNumber={currentStepNumber}
 						/>
